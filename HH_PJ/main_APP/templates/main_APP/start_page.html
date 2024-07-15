@@ -1,0 +1,11 @@
+{% extends 'main_APP/layouts/base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome to the HH COPY!!!!!</h2>
+    <p>Типо HeadHunter</p>
+    {% if not user.is_authenticated %}
+        <p>If you don't have an account, you can <a href="{% url 'register_page' %}">sign up here</a>.</p>
+    {% endif %}
+</div>
+{% endblock %}

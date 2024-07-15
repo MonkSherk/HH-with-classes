@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Search</title>
+    <link rel="stylesheet" href="{% static 'main_APP/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'start_page' %}">Home</a></li>
+                <li><a href="{% url 'vacancy_list' %}">Vacancies</a></li>
+                <li><a href="{% url 'resume_list' %}">Resumes</a></li>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <li><a href="{% url 'vacancy_create' %}">Create Vacancy</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'logout_page' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'register_page' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login_page' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+    <script>
+    let tryies = 0;
+function get_alert(){
+    if (tryies > 1){
+        alert("You've already sent a resume!");
+        tryies = 0;
+        return;
+    }
+    alert("Your Resume has been sent");
+    tryies += 1;
+    setTimeout(function(){
+        window.location.href = "base.html";
+        tryies -=1
+    }, 3000);
+}
+    </script>
+</body>
+</html>

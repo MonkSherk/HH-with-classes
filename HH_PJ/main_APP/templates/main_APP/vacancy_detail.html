@@ -1,0 +1,15 @@
+{% extends 'main_APP/layouts/base.html' %}
+{% block content %}
+<h1>{{ vacancy.title }}</h1>
+<p><strong>Company:</strong> {{ vacancy.company.name }}</p>
+<p><strong>Salary:</strong> {{ vacancy.salary }}</p>
+<p><strong>Required Skills:</strong> {{ vacancy.skills.all|join:", " }}</p>
+<p><strong>Description:</strong> {{ vacancy.description }}</p>
+<p><strong>Type of Job:</strong> {{ vacancy.get_type_of_job_display }}</p>
+    <a href="{% url 'vacancy_list' %}"><button>Back to Vacancy List</button></a>
+    <a href=""><button onclick="get_alert()">Send a Resume</button></a>
+{% if user.is_staff %}
+    <a href="{% url 'vacancy_update' vacancy.pk %}">Edit</a>
+    <a href="{% url 'vacancy_delete' vacancy.pk %}">Delete</a>
+{% endif %}
+{% endblock %}

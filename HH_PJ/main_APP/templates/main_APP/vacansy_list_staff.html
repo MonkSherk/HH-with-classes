@@ -1,0 +1,22 @@
+{% extends 'main_APP/layouts/base.html' %}
+
+{% block title %}Vacancies{% endblock %}
+
+{% block content %}
+<h1>Vacancies</h1>
+
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Filter</button>
+</form>
+
+<ul>
+    {% for vacancy in vacancies %}
+        <li>{{ vacancy.title }} - {{ vacancy.employer.username }}</li>
+        {% empty %}
+        <p>There are no active vacancies at the moment.</p>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

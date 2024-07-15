@@ -1,0 +1,24 @@
+{% extends 'main_APP/layouts/base.html' %}
+{% block content %}
+<h1>Vacancy List</h1>
+<ul>
+    {% for vacancy in vacancies %}
+        <li>
+            <a href="{% url 'vacancy_detail' vacancy.pk %}">{{ vacancy.title }}</a>
+            {% if user.is_staff %}
+                <a href="{% url 'vacancy_update' vacancy.pk %}"><button>Edit</button></a>
+                <a href="{% url 'vacancy_delete' vacancy.pk %}"><button>Delete</button></a>
+                <a href="#"><button>Filter Vacancy (Not working)</button></a>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>There's no any vacancy. Please wait until something appear!</li>
+        {% if request.user.is_staff %}
+           <form action="{% url 'vacancy_create' %}">
+            <h2>Staff members warning!</h2>
+            <li>There's no any resume. If you'd like to create one, press <button style="margin-right: 300px">here</button></li>
+        </form>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}

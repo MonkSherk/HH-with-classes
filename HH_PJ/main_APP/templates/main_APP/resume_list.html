@@ -1,0 +1,14 @@
+{% extends 'main_APP/layouts/base.html' %}
+
+{% block content %}
+<h1>Resume List</h1>
+<ul>
+    {% for resume in resumes %}
+        <li><a href="{% url 'resume_detail' resume.pk %}">{{ resume.dream_job }}</a></li>
+    {% empty %}
+        <form action="{% url 'resume_create' %}">
+            <li>There's no any resume. If you'd like to create one, press <button style="margin-right: 300px">here</button></li>
+        </form>
+    {% endfor %}
+</ul>
+{% endblock %}

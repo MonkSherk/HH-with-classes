@@ -1,0 +1,15 @@
+{% extends 'main_APP/layouts/base.html' %}
+
+{% block content %}
+<h1>{{ resume.dream_job }}</h1>
+<p><strong>Name:</strong> {{ resume.name }}</p>
+<p><strong>Surname:</strong> {{ resume.surname }}</p>
+<p><strong>Lastname:</strong> {{ resume.lastname }}</p>
+<p><strong>Date of Birth:</strong> {{ resume.date_of_birth }}</p>
+<p><strong>Email:</strong> {{ resume.email }}</p>
+<p><strong>Phone:</strong> {{ resume.phone }}</p>
+<p><strong>Skills:</strong> {{ resume.skills.all|join:", " }}</p>
+<p><strong>Experience:</strong> {{ resume.exp }}</p>
+<p><strong>Education:</strong> {{ resume.get_education_display }}</p>
+<p><strong>Gender:</strong> {{ resume.get_gender_display }}</p>
+{% endblock %}
